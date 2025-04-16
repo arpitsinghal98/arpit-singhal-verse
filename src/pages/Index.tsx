@@ -12,7 +12,7 @@ import ContactSection from "../components/sections/ContactSection";
 import BlogSection from "../components/sections/BlogSection";
 import TopCornerLogo from "../components/three/TopCornerLogo";
 import { Canvas } from "@react-three/fiber";
-import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import LogoModel from "../components/three/AnimatedLogo";
 
 const Index = () => {

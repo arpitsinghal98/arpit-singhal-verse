@@ -10,9 +10,8 @@ const LogoModel = ({ isMinimized = false, color = "#33C3F0" }) => {
   const textRef = useRef<THREE.Mesh>(null);
   
   // Animation springs
-  const { scale, rotation } = useSpring({
-    scale: isMinimized ? [0.8, 0.8, 0.8] : [1, 1, 1],
-    rotation: isMinimized ? [0, 0, 0] : [0, THREE.MathUtils.degToRad(360), 0],
+  const { scale } = useSpring({
+    scale: isMinimized ? 0.8 : 1,
     config: { mass: 2, tension: 200, friction: 50 }
   });
 
@@ -29,7 +28,7 @@ const LogoModel = ({ isMinimized = false, color = "#33C3F0" }) => {
   return (
     <animated.mesh 
       ref={meshRef}
-      scale={scale as any}
+      scale={scale}
       position={[0, 0, 0]}
     >
       {/* Outer ring */}

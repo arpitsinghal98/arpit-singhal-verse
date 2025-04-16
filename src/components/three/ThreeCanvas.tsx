@@ -40,7 +40,7 @@ const Environment = () => {
           floatIntensity={2}
           position={[x, x % 3, x % 2 - 10]}
         >
-          <Sphere args={[1, 32, 32]} scale={0.5}>
+          <Sphere args={[1, 32, 32]}>
             <MeshDistortMaterial
               color={i % 2 === 0 ? "#33C3F0" : "#D946EF"}
               distort={0.5}
@@ -92,7 +92,7 @@ const AnimatedText = ({ isVisible = false }) => {
   }, [isVisible, camera]);
   
   // Gentle floating animation
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (groupRef.current) {
       groupRef.current.position.y += Math.sin(state.clock.elapsedTime * 0.5) * 0.005;
     }
@@ -235,10 +235,7 @@ const ThreeCanvas = ({ isVisible = false }) => {
         dpr={[1, 2]}
         gl={{ 
           antialias: true, 
-          alpha: true, 
-          logarithmicDepthBuffer: true,
-          toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.2
+          alpha: true
         }}
         style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
       >
