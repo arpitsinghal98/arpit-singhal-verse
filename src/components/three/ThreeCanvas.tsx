@@ -28,8 +28,6 @@ const Environment = () => {
           speed={0.4} 
           segments={20}
           color="#33C3F0"
-          position={[0, 0, 0]}
-          scale={[1.5, 1.5, 1.5]}
         />
       </group>
       
@@ -42,7 +40,7 @@ const Environment = () => {
           floatIntensity={2}
           position={[x, x % 3, x % 2 - 10]}
         >
-          <Sphere args={[1, 32, 32]} scale={[0.5, 0.5, 0.5]}>
+          <Sphere args={[1, 32, 32]} scale={0.5}>
             <MeshDistortMaterial
               color={i % 2 === 0 ? "#33C3F0" : "#D946EF"}
               distort={0.5}

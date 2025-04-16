@@ -1,5 +1,5 @@
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Text3D, MeshTransmissionMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -30,7 +30,7 @@ const LogoModel = ({ isMinimized = false, color = "#33C3F0" }) => {
     <animated.mesh 
       ref={meshRef}
       scale={scale as any}
-      position={isMinimized ? [0, 0, 0] : [0, 0, 0]}
+      position={[0, 0, 0]}
     >
       {/* Outer ring */}
       <torusGeometry args={[1.5, 0.15, 16, 32]} />
@@ -74,7 +74,7 @@ const LogoModel = ({ isMinimized = false, color = "#33C3F0" }) => {
       {/* Text "AS" in the middle */}
       <Text3D
         ref={textRef}
-        font={"/fonts/inter_bold.json"}
+        font="/fonts/inter_bold.json"
         size={0.5}
         height={0.1}
         position={[-0.3, -0.25, 0]}
