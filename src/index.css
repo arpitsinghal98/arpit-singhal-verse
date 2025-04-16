@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -87,7 +88,7 @@
 
 @layer base {
   * {
-    @apply border-border selection:bg-neon-purple/30 selection:text-white;
+    @apply border-border selection:bg-neon-blue/30 selection:text-white;
     scroll-behavior: smooth;
   }
 
@@ -107,22 +108,22 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-neon-purple/60 rounded-full;
+    @apply bg-neon-blue/60 rounded-full;
     border: 2px solid transparent;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-neon-purple/80;
+    @apply bg-neon-blue/80;
   }
 }
 
 @layer utilities {
   .neon-border {
-    @apply border border-neon-purple/50 shadow-[0_0_10px_rgba(155,135,245,0.5)];
+    @apply border border-neon-blue/50 shadow-[0_0_10px_rgba(30,174,219,0.5)];
   }
   
   .neon-text {
-    @apply text-neon-purple drop-shadow-[0_0_8px_rgba(155,135,245,0.8)];
+    @apply text-neon-blue drop-shadow-[0_0_8px_rgba(30,174,219,0.8)];
   }
   
   .neon-text-blue {
@@ -137,16 +138,12 @@
     @apply backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl;
   }
   
-  .text-gradient {
-    @apply bg-gradient-to-r from-neon-purple via-neon-blue to-neon-pink bg-clip-text text-transparent;
-  }
-  
   .hover-float {
     @apply transition-transform duration-300 hover:-translate-y-1;
   }
   
   .hover-glow {
-    @apply transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(155,135,245,0.7)];
+    @apply transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(30,174,219,0.7)];
   }
   
   .appear {
@@ -155,6 +152,10 @@
   
   .appear.is-visible {
     @apply opacity-100 translate-y-0;
+  }
+  
+  .cubic-bezier {
+    transition-timing-function: cubic-bezier(0.64, 0.04, 0.35, 1);
   }
 }
 
@@ -166,4 +167,54 @@
 /* Custom smooth scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* 3D text effect */
+.text-3d {
+  text-shadow: 0px 1px 0px #33C3F0,
+               0px 2px 0px #33C3F0,
+               0px 3px 0px #33C3F0,
+               0px 4px 0px rgba(51, 195, 240, 0.8),
+               0px 5px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* Glowing effect for buttons and interactive elements */
+.glow-effect {
+  box-shadow: 0 0 5px rgba(51, 195, 240, 0.5),
+              0 0 10px rgba(51, 195, 240, 0.3),
+              0 0 15px rgba(51, 195, 240, 0.1);
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 10px rgba(51, 195, 240, 0.7),
+              0 0 20px rgba(51, 195, 240, 0.5),
+              0 0 30px rgba(51, 195, 240, 0.3);
+}
+
+/* Advanced parallax wrapper */
+.parallax-wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  perspective: 10px;
+  transform-style: preserve-3d;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.parallax-layer-back {
+  transform: translateZ(-10px) scale(2);
+}
+
+.parallax-layer-mid {
+  transform: translateZ(-5px) scale(1.5);
+}
+
+.parallax-layer-front {
+  transform: translateZ(0);
 }

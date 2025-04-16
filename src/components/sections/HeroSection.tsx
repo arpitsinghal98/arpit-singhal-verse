@@ -1,11 +1,24 @@
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import ThreeCanvas from "../three/ThreeCanvas";
+import * as THREE from "three";
+import { useScrollAppearance } from "@/hooks/use-scroll-appearance";
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showTagline, setShowTagline] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [contentRef, isContentVisible] = useScrollAppearance<HTMLDivElement>({ threshold: 0.1 });
+  
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   useEffect(() => {
     // Simulate loading time for the 3D scene
@@ -25,10 +38,17 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section 
+      id="home" 
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       <ThreeCanvas isVisible={isLoaded} />
       
-      <div className="container mx-auto px-4 pt-20 pb-10 z-10 relative">
+      <motion.div 
+        className="container mx-auto px-4 pt-20 pb-10 z-10 relative"
+        style={{ y, opacity }}
+      >
         <div className="flex flex-col items-center justify-center min-h-[80vh] text-center">
           {/* Invisible h1 for SEO */}
           <h1 className="sr-only">Arpit Singhal - Software Developer</h1>
@@ -43,9 +63,12 @@ const HeroSection = () => {
             <p className="text-xl md:text-3xl font-light text-white/80 leading-relaxed">
               Powering Organizational Growth with
             </p>
-            <p className="text-2xl md:text-4xl font-bold mt-2 text-gradient">
+            <div 
+              ref={contentRef}
+              className="text-2xl md:text-4xl font-bold mt-2 text-neon-blue"
+            >
               Cloud-Native and AI softwares
-            </p>
+            </div>
           </motion.div>
           
           {/* CTA Button */}
@@ -57,7 +80,7 @@ const HeroSection = () => {
           >
             <a
               href="#projects"
-              className="px-8 py-3 rounded-full bg-gradient-to-r from-neon-purple to-neon-blue text-white font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(155,135,245,0.7)] hover:scale-105"
+              className="px-8 py-3 rounded-full bg-neon-blue text-white font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(30,174,219,0.7)] hover:scale-105"
             >
               Explore My Work
             </a>
@@ -79,11 +102,11 @@ const HeroSection = () => {
           >
             <div className="flex flex-col items-center">
               <p className="text-sm text-white/60 mb-2">Scroll down</p>
-              <div className="w-[2px] h-8 bg-neon-purple/50 rounded-full"></div>
+              <div className="w-[2px] h-8 bg-neon-blue/50 rounded-full"></div>
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
