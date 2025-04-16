@@ -26,7 +26,6 @@ const Environment = () => {
         <Cloud 
           opacity={0.5}
           speed={0.4} 
-          width={10} 
           depth={1.5} 
           segments={20}
           color="#33C3F0"
