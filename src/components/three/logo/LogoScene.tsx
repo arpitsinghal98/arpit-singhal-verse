@@ -10,7 +10,7 @@ interface LogoSceneProps {
  */
 const LogoScene = ({ isVisible = false }: LogoSceneProps) => {
   return (
-    <group position={[0, 0, 0]}>
+    <group position={[0, 0, 0]} visible={isVisible}>
       <LogoModel />
     </group>
   );
