@@ -105,7 +105,7 @@ const AnimatedText = ({ isVisible = false }) => {
       <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
         <Text3D
           ref={textRef}
-          font={"/fonts/inter_bold.json"}
+          font="/fonts/inter_bold.json"
           size={1.5}
           height={0.2}
           curveSegments={12}
@@ -242,7 +242,7 @@ const ThreeCanvas = ({ isVisible = false }) => {
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.2
         }}
-        camera={{ position: [0, 0, 15], fov: 60 }}
+        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
       >
         <Scene isVisible={isVisible} />
       </Canvas>
